@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card" style="width: 24rem;margin-top: 20px;">
+    <div class="card-body">
+      <h5 class="card-title">Forecast Brasil API</h5>
+      <!-- <h6 class="card-subtitle mb-2 text-muted">Documentação:</h6> -->
+      <!-- <p class="card-text">Documentação da integração com Open Weather</p> -->
+      <a href="https://forecast-br.herokuapp.com/doc/" target="_blank" class="card-link"
+        style="text-decoration: none;">Documentação</a>
+      <a href="https://github.com/Asterlc" target="_blank" class="card-link" style="text-decoration: none;">Meu
+        Github</a>
+      <a href="https://www.linkedin.com/in/lucas-aster-803b81149/" target="_blank" class="card-link"
+        style="text-decoration: none;">Meu Linkedin</a>
+    </div>
+  </div>
+
+  <div class="container main container">
+    <div class="col-lg-12 text-center">
+      <form novalidate (ngSubmit)="getCounty()" [formGroup]="countyForm">
+        <div class="form-group">
+          <label class="col-md-1 control-label"
+            style="font-size: 32px; font-weight:bolder; width: 200px;margin-bottom: 5px;">
+            Município
+          </label>
+          <div class="col-md-2" style="margin: auto;">
+            <input type="text" class="form-control" formControlName="county" placeholder="Ex: São Paulo">
+            <button class="btn btn-primary" style="margin-top: 5px;">Pesquisar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="dataWeather" class="container" style="width: 36rem;margin-top: 20px;">
+  <div class="col-lg-12 card text-center">
+    <ul style="list-style-type: none; text-align:left; margin-top: 5px;">
+      <li>Clima: {{dataWeather.weather[0]['description']}}</li>
+      <li>Temperatura: {{dataWeather['temperatureCelsius']}} ºC</li>
+      <li>Sensação Térmica: {{dataWeather['feelsLikeCelsius']}} ºC</li>
+      <li>Velocidade do Vento: {{dataWeather['windSpeed']}}</li>
+    </ul>
+  </div>
+</div>
