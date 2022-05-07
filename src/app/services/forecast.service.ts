@@ -6,8 +6,8 @@ import { Observable } from "rxjs";
 })
 export class ForecastService {
   constructor(private httpClient: HttpClient) { };
-  // protected baseURL = `https://forecast-br.herokuapp.com/forecast`;
-  protected baseURL = `http://localhost:8095/forecast`; //dev cors liberado
+  protected baseURL = `https://forecast-br.herokuapp.com/forecast`;
+  // protected baseURL = `http://localhost:8095/forecast`; //dev cors liberado
 
   getCountyByName(countyName: string): Observable<any> {
     const httpHeader = {
