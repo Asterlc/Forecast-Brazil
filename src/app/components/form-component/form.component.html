@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div *ngIf="dataWeather" class="container" style="width: 36rem;margin-top: 20px;">
+<div *ngIf="dataWeather" class="container" style="width: 64rem;margin-top: 20px;">
   <div class="col-lg-12 card text-center">
     <div class="container main-container">
       <h4>Tempo Atual</h4>
@@ -39,17 +39,29 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Clima</th>
+            <th scope="col">Humidade</th>
             <th scope="col">Temperatura</th>
-            <th scope="col">Sensação Térmica</th>
+            <th scope="col">Sensação</th>
             <th scope="col">Velocidade do Vento</th>
+            <th scope="col">Direção do Vento</th>
+            <th scope="col">Rajada do Vento</th>
+            <th scope="col">Ponto de Orvalho</th>
+            <th scope="col">Indice UV</th>
+            <th scope="col">Nuvens</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{dataWeather.weather[0]['description'] | titlecase}}</td>
-            <td>{{dataWeather['temperatureCelsius'] | number:'1.2-2':'pt'}} ºC</td>
-            <td>{{dataWeather['feelsLikeCelsius'] | number:'1.2-2':'pt'}} ºC</td>
-            <td>{{dataWeather['windSpeed']*3.6 | number:'1.2-2':'pt'}} km/h</td>
+            <td>{{dataWeather['humidity']}}%</td>
+            <td>{{dataWeather['temperatureCelsius'] | number:'1.2-2':'pt'}}ºC</td>
+            <td>{{dataWeather['feelsLikeCelsius'] | number:'1.2-2':'pt'}}ºC</td>
+            <td>{{dataWeather['windSpeed']*3.6 | number:'1.2-2':'pt'}}km/h</td>
+            <td>{{dataWeather['wind_direction']}}º</td>
+            <td>{{dataWeather['wind_gust']*3.6 | number:'1.2-2':'pt'}}km/h</td>
+            <td>{{dataWeather['dewPoint'] | number:'1.2-2':'pt'}}ºC</td>
+            <td>{{dataWeather['maxUVI']}}</td>
+            <td>{{dataWeather['clouds']}}%</td>
           </tr>
           <tr *ngFor="let weather of dataWeather.weather;let i=index;">
             <td *ngIf="i > 0"> {{weather['description'] | titlecase}}</td>
