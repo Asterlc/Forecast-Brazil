@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="card" style="width: 24rem;margin-top: 20px;">
+    <div class="card-body">
+      <h5 class="card-title">Forecast Brasil API</h5>
+      <!-- <h6 class="card-subtitle mb-2 text-muted">Documentação:</h6> -->
+      <!-- <p class="card-text">Documentação da integração com Open Weather</p> -->
+      <a href="https://forecast-br.herokuapp.com/doc/" target="_blank" class="card-link"
+        style="text-decoration: none;">Documentação</a>
+      <a href="https://github.com/Asterlc" target="_blank" class="card-link" style="text-decoration: none;">Meu
+        Github</a>
+      <a href="https://www.linkedin.com/in/lucas-aster-803b81149/" target="_blank" class="card-link"
+        style="text-decoration: none;">Meu Linkedin</a>
+    </div>
+  </div>
+
+  <div class="container main container">
+    <div class="col-lg-12 text-center">
+      <form novalidate (ngSubmit)="getCounty()" [formGroup]="countyForm">
+        <div class="form-group">
+          <label class="col-md-1 control-label"
+            style="font-size: 32px; font-weight:bolder; width: 200px;margin-bottom: 5px;">
+            Município
+          </label>
+          <div class="col-md-2" style="margin: auto;">
+            <input type="text" class="form-control" formControlName="county" placeholder="Ex: São Paulo">
+            <button class="btn btn-primary" style="margin-top: 5px;">Pesquisar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="dataWeather" class="container" style="width: auto;margin-top: 20px;">
+  <div class="col-lg-12 card text-center">
+    <div class="table-responsive">
+      <h4>Tempo Atual</h4>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Clima</th>
+            <th scope="col">Umidade</th>
+            <th scope="col">Temperatura</th>
+            <th scope="col">Sensação</th>
+            <th scope="col">Velocidade do Vento</th>
+            <th scope="col">Direção do Vento</th>
+            <th scope="col">Ponto de Orvalho</th>
+            <th scope="col">Indice UV</th>
+            <th scope="col">Nuvens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{dataWeather.weather[0]['description'] | titlecase}}</td>
+            <td>{{dataWeather['humidity']}}%</td>
+            <td>{{dataWeather['temperatureCelsius'] | number:'1.2-2':'pt'}}ºC</td>
+            <td>{{dataWeather['feelsLikeCelsius'] | number:'1.2-2':'pt'}}ºC</td>
+            <td>{{dataWeather['windSpeed']*3.6 | number:'1.2-2':'pt'}}km/h</td>
+            <td>{{dataWeather['wind_direction']}}º</td>
+            <td>{{dataWeather['dewPoint'] | number:'1.2-2':'pt'}}ºC</td>
+            <td>{{dataWeather['maxUVI']}}</td>
+            <td>{{dataWeather['clouds']}}%</td>
+          </tr>
+          <tr *ngFor="let weather of dataWeather.weather;let i=index;">
+            <td *ngIf="i > 0"> {{weather['description'] | titlecase}}</td>
+          </tr>
+        </tbody>
+      </table>
+    <!-- </div> -->
+  </div>
+</div>
